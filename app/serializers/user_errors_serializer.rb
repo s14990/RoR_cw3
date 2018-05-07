@@ -1,21 +1,13 @@
 class UserErrorsSerializer < ActiveModel::Serializer
-  attributes :errors,:user,:message3
-  attribute :message1,if: :created?
-  attribute :message1,if: -> { :created? == false }
+  attribute :error.size
   
-  def message1
-    'Error in create' 
-  end
+#  attribute :message1,if: :errors.contain["app/controllers/users_controller.rb:14:in `create"] 
+#  attribute :message1,if: !:errors.contain["app/controllers/users_controller.rb:14:in `create"]
+
   
-  def message2
-    'Error in edit' 
-  end
-  
-  def message3
-    :errors.count 
-  end
-  
-  def created
-    :user.persisted?
-  end
+#  def message
+#    "Error in create"
+#  end
+
 end
+

@@ -13,9 +13,9 @@ class UsersController < ApplicationController
   def create
     user = User.create!(user_params)
     if user.persisted?
-    render json: user, serializer: UserSerializer, status: 201
+    render json: user,status: 201
     else
-    render json: " " , serializer: UserErrorsSerializer, status: 422
+    render json: user,serializer: UserErrorsSerializer , status: 422
     end
   end
   
@@ -29,9 +29,7 @@ class UsersController < ApplicationController
   
   def destroy
     user.destroy!
-    if user.destroyed?
     render json: user , serializer: UserSerializer, status: 204
-    end
   end
   
   private
